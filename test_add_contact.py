@@ -21,103 +21,64 @@ class TestAddContact(unittest.TestCase):
     def test_add_contact(self):
         wd = self.wd
 
-        #Open main page
-        wd.get("http://localhost:8080/addressbook/")
+        self.open_main_page(wd)
+        self.login(wd)
+        self.init_contact_creation(wd)
+        self.fill_first_name_pole(wd)
+        self.fill_second_name_pole(wd)
+        self.fill_last_name_pole(wd)
+        self.fill_nickname_pole(wd)
+        self.fill_title_pole(wd)
+        self.fill_company_pole(wd)
+        self.fill_address_pole(wd)
+        self.fill_home_pole(wd)
+        self.fill_mobile_phone_pole(wd)
+        self.fill_work_pole(wd)
+        self.fill_fax_pole(wd)
+        self.fill_email1_pole(wd)
+        self.fill_email2_pole(wd)
+        self.fill_email3_pole(wd)
+        self.fill_homepage_pole(wd)
+        self.select_birtday_date(wd)
+        self.select_anniversary_date(wd)
+        self.fill_address2_pole(wd)
+        self.fill_home2_pole(wd)
+        self.fill_notes_form(wd)
+        self.submit_contact_creation(wd)
+        self.return_to_main_page(wd)
+        self.logout(wd)
 
-        # Login
-        wd.find_element(By.NAME, "user").click()
-        wd.find_element(By.NAME, "user").clear()
-        wd.find_element(By.NAME, "user").send_keys("admin")
-        wd.find_element(By.NAME, "pass").click()
-        wd.find_element(By.NAME, "pass").clear()
-        wd.find_element(By.NAME, "pass").send_keys("secret")
-        wd.find_element(By.XPATH, "//input[@value='Login']").click()
+    def logout(self, wd):
+        # Logout
+        wd.find_element(By.XPATH, '//*[@id="top"]/form/a').click()
 
+    def return_to_main_page(self, wd):
+        # Return to main page
+        wd.find_element(By.XPATH, '//*[@id="content"]/div/i/a[2]').click()
 
-        # Init contact creation
-        wd.find_element(By.XPATH, '//*[@id="nav"]/ul/li[2]/a').click()
+    def submit_contact_creation(self, wd):
+        # Submit contact creation
+        wd.find_element(By.XPATH, '//*[@id="content"]/form/input[21]').click()
 
-        # Fill contact form fully
-        # Fill first name pole
-        wd.find_element(By.NAME, "firstname").click()
-        wd.find_element(By.NAME, "firstname").clear()
-        wd.find_element(By.NAME, "firstname").send_keys("first_test")
+    def fill_notes_form(self, wd):
+        # Fill notes form
+        wd.find_element(By.NAME, "notes").click()
+        wd.find_element(By.NAME, "notes").clear()
+        wd.find_element(By.NAME, "notes").send_keys("notes_test")
 
-        # Fill second name pole
-        wd.find_element(By.NAME, "middlename").click()
-        wd.find_element(By.NAME, "middlename").clear()
-        wd.find_element(By.NAME, "middlename").send_keys("middle_test")
+    def fill_home2_pole(self, wd):
+        # Fill home2 pole
+        wd.find_element(By.NAME, "phone2").click()
+        wd.find_element(By.NAME, "phone2").clear()
+        wd.find_element(By.NAME, "phone2").send_keys("home2_test")
 
-        # Fill last name pole
-        wd.find_element(By.NAME, "lastname").click()
-        wd.find_element(By.NAME, "lastname").clear()
-        wd.find_element(By.NAME, "lastname").send_keys("last_test")
+    def fill_address2_pole(self, wd):
+        # Fill address2 form
+        wd.find_element(By.NAME, "address2").click()
+        wd.find_element(By.NAME, "address2").clear()
+        wd.find_element(By.NAME, "address2").send_keys("address_test")
 
-        # Fill nickname pole
-        wd.find_element(By.NAME, "nickname").click()
-        wd.find_element(By.NAME, "nickname").clear()
-        wd.find_element(By.NAME, "nickname").send_keys("nick_test")
-
-        # Fill title pole
-        wd.find_element(By.NAME, "title").click()
-        wd.find_element(By.NAME, "title").clear()
-        wd.find_element(By.NAME, "title").send_keys("title_test")
-
-        # Fill company pole
-        wd.find_element(By.NAME, "company").click()
-        wd.find_element(By.NAME, "company").clear()
-        wd.find_element(By.NAME, "company").send_keys("company_test")
-
-        # Fill address pole
-        wd.find_element(By.NAME, "address").click()
-        wd.find_element(By.NAME, "address").clear()
-        wd.find_element(By.NAME, "address").send_keys("address_test")
-
-        # Fill home pole
-        wd.find_element(By.NAME, "home").click()
-        wd.find_element(By.NAME, "home").clear()
-        wd.find_element(By.NAME, "home").send_keys("home_test")
-
-        # Fill mobile phone pole
-        wd.find_element(By.NAME, "mobile").click()
-        wd.find_element(By.NAME, "mobile").clear()
-        wd.find_element(By.NAME, "mobile").send_keys("mobile_test")
-
-        # Fill work pole
-        wd.find_element(By.NAME, "work").click()
-        wd.find_element(By.NAME, "work").clear()
-        wd.find_element(By.NAME, "work").send_keys("work_test")
-
-        # Fill fax pole
-        wd.find_element(By.NAME, "fax").click()
-        wd.find_element(By.NAME, "fax").clear()
-        wd.find_element(By.NAME, "fax").send_keys("fax_test")
-
-        # Fill emails poles
-        wd.find_element(By.NAME, "email").click()
-        wd.find_element(By.NAME, "email").clear()
-        wd.find_element(By.NAME, "email").send_keys("email_test")
-        wd.find_element(By.NAME, "email2").click()
-        wd.find_element(By.NAME, "email2").clear()
-        wd.find_element(By.NAME, "email2").send_keys("email2_test")
-        wd.find_element(By.NAME, "email3").click()
-        wd.find_element(By.NAME, "email3").clear()
-        wd.find_element(By.NAME, "email3").send_keys("email3_test")
-
-        # Fill homepage pole
-        wd.find_element(By.NAME, "homepage").click()
-        wd.find_element(By.NAME, "homepage").clear()
-        wd.find_element(By.NAME, "homepage").send_keys("homepage_test")
-
-        # Select birthday date values
-        wd.find_element(By.NAME, "bday").click()
-        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text("1")
-        wd.find_element(By.NAME, "bmonth").click()
-        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text("January")
-        wd.find_element(By.NAME, "byear").click()
-        wd.find_element(By.NAME, "byear").clear()
-        wd.find_element(By.NAME, "byear").send_keys("1900")
-
+    def select_anniversary_date(self, wd):
         # Select anniversary date values
         wd.find_element(By.NAME, "aday").click()
         Select(wd.find_element(By.NAME, "aday")).select_by_visible_text("2")
@@ -127,29 +88,123 @@ class TestAddContact(unittest.TestCase):
         wd.find_element(By.NAME, "ayear").clear()
         wd.find_element(By.NAME, "ayear").send_keys("2000")
 
-        # Fill address form
-        wd.find_element(By.NAME, "address2").click()
-        wd.find_element(By.NAME, "address2").clear()
-        wd.find_element(By.NAME, "address2").send_keys("address_test")
+    def select_birtday_date(self, wd):
+        # Select birthday date values
+        wd.find_element(By.NAME, "bday").click()
+        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text("1")
+        wd.find_element(By.NAME, "bmonth").click()
+        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text("January")
+        wd.find_element(By.NAME, "byear").click()
+        wd.find_element(By.NAME, "byear").clear()
+        wd.find_element(By.NAME, "byear").send_keys("1900")
 
+    def fill_homepage_pole(self, wd):
+        # Fill homepage pole
+        wd.find_element(By.NAME, "homepage").click()
+        wd.find_element(By.NAME, "homepage").clear()
+        wd.find_element(By.NAME, "homepage").send_keys("homepage_test")
+
+    def fill_email3_pole(self, wd):
+        # Fill email3 pole
+        wd.find_element(By.NAME, "email3").click()
+        wd.find_element(By.NAME, "email3").clear()
+        wd.find_element(By.NAME, "email3").send_keys("email3_test")
+
+    def fill_email2_pole(self, wd):
+        # Fill email2 pole
+        wd.find_element(By.NAME, "email2").click()
+        wd.find_element(By.NAME, "email2").clear()
+        wd.find_element(By.NAME, "email2").send_keys("email2_test")
+
+    def fill_email1_pole(self, wd):
+        # Fill email1 pole
+        wd.find_element(By.NAME, "email").click()
+        wd.find_element(By.NAME, "email").clear()
+        wd.find_element(By.NAME, "email").send_keys("email_test")
+
+    def fill_fax_pole(self, wd):
+        # Fill fax pole
+        wd.find_element(By.NAME, "fax").click()
+        wd.find_element(By.NAME, "fax").clear()
+        wd.find_element(By.NAME, "fax").send_keys("fax_test")
+
+    def fill_work_pole(self, wd):
+        # Fill work pole
+        wd.find_element(By.NAME, "work").click()
+        wd.find_element(By.NAME, "work").clear()
+        wd.find_element(By.NAME, "work").send_keys("work_test")
+
+    def fill_mobile_phone_pole(self, wd):
+        # Fill mobile phone pole
+        wd.find_element(By.NAME, "mobile").click()
+        wd.find_element(By.NAME, "mobile").clear()
+        wd.find_element(By.NAME, "mobile").send_keys("mobile_test")
+
+    def fill_home_pole(self, wd):
         # Fill home pole
-        wd.find_element(By.NAME, "phone2").click()
-        wd.find_element(By.NAME, "phone2").clear()
-        wd.find_element(By.NAME, "phone2").send_keys("home2_test")
+        wd.find_element(By.NAME, "home").click()
+        wd.find_element(By.NAME, "home").clear()
+        wd.find_element(By.NAME, "home").send_keys("home_test")
 
-        # Fill notes form
-        wd.find_element(By.NAME, "notes").click()
-        wd.find_element(By.NAME, "notes").clear()
-        wd.find_element(By.NAME, "notes").send_keys("notes_test")
+    def fill_address_pole(self, wd):
+        # Fill address pole
+        wd.find_element(By.NAME, "address").click()
+        wd.find_element(By.NAME, "address").clear()
+        wd.find_element(By.NAME, "address").send_keys("address_test")
 
-        # Submit contact creation
-        wd.find_element(By.XPATH, '//*[@id="content"]/form/input[21]').click()
+    def fill_company_pole(self, wd):
+        # Fill company pole
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys("company_test")
 
-        # Return to main page
-        wd.find_element(By.XPATH, '//*[@id="content"]/div/i/a[2]').click()
+    def fill_title_pole(self, wd):
+        # Fill title pole
+        wd.find_element(By.NAME, "title").click()
+        wd.find_element(By.NAME, "title").clear()
+        wd.find_element(By.NAME, "title").send_keys("title_test")
 
-        # Logout
-        wd.find_element(By.XPATH, '//*[@id="top"]/form/a').click()
+    def fill_nickname_pole(self, wd):
+        # Fill nickname pole
+        wd.find_element(By.NAME, "nickname").click()
+        wd.find_element(By.NAME, "nickname").clear()
+        wd.find_element(By.NAME, "nickname").send_keys("nick_test")
+
+    def fill_last_name_pole(self, wd):
+        # Fill last name pole
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys("last_test")
+
+    def fill_second_name_pole(self, wd):
+        # Fill second name pole
+        wd.find_element(By.NAME, "middlename").click()
+        wd.find_element(By.NAME, "middlename").clear()
+        wd.find_element(By.NAME, "middlename").send_keys("middle_test")
+
+    def fill_first_name_pole(self, wd):
+        # Fill first name pole
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys("first_test")
+
+    def init_contact_creation(self, wd):
+        # Init contact creation
+        wd.find_element(By.XPATH, '//*[@id="nav"]/ul/li[2]/a').click()
+
+    def login(self, wd):
+        # Login
+        wd.find_element(By.NAME, "user").click()
+        wd.find_element(By.NAME, "user").clear()
+        wd.find_element(By.NAME, "user").send_keys("admin")
+        wd.find_element(By.NAME, "pass").click()
+        wd.find_element(By.NAME, "pass").clear()
+        wd.find_element(By.NAME, "pass").send_keys("secret")
+        wd.find_element(By.XPATH, "//input[@value='Login']").click()
+
+    def open_main_page(self, wd):
+        # Open main page
+        wd.get("http://localhost:8080/addressbook/")
 
     def is_element_present(self, how, what):
         # Private method for definition of elements' presentation on needed page
