@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 from group import Group
 from application import Application
 import pytest
@@ -18,6 +16,7 @@ def test_add_group(app):
     app.login(username="admin", password="secret")
     app.create_group(Group(name="Test", header="testtest", footer="testtesttest"))
     app.logout()
+
 
 def test_add_empty_group(app):
     # Slave test scenario - open site, login, create group with empty forms, return to groups page and logout
