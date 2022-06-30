@@ -21,21 +21,15 @@ class TestAddGroup(unittest.TestCase):
     def test_add_group(self):
         # Main test scenario - open site, login, create group, return to groups page and logout
         wd = self.wd
-        self.open_main_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.init_group_creation(wd)
         self.create_group(wd, Group(name="Test", header="testtest", footer="testtesttest"))
-        self.return_to_groups_page(wd)
         self.logout(wd)
 
     def test_add_empty_group(self):
         # Slave test scenario - open site, login, create group with empty forms, return to groups page and logout
         wd = self.wd
-        self.open_main_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.init_group_creation(wd)
         self.create_group(wd, Group(name="", header="", footer=""))
-        self.return_to_groups_page(wd)
         self.logout(wd)
 
     def open_main_page(self, wd):
@@ -44,6 +38,7 @@ class TestAddGroup(unittest.TestCase):
 
     def login(self, wd, username, password):
         # Login
+        self.open_main_page(wd)
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
         wd.find_element(By.NAME, "user").send_keys(username)
@@ -58,6 +53,7 @@ class TestAddGroup(unittest.TestCase):
 
     def create_group(self, wd, group):
         # Fill group form
+        self.init_group_creation(wd)
         wd.find_element(By.NAME, "group_name").click()
         wd.find_element(By.NAME, "group_name").clear()
         wd.find_element(By.NAME, "group_name").send_keys(group.name)
@@ -69,6 +65,7 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element(By.NAME, "group_footer").send_keys(group.footer)
         # Submit group creation
         wd.find_element(By.NAME, "submit").click()
+        self.return_to_groups_page(wd)
 
     def return_to_groups_page(self, wd):
         # Return to groups page
