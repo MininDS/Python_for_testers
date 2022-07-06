@@ -25,8 +25,8 @@ class TestAddContact(unittest.TestCase):
         self.login(wd, username="admin", password="secret")
         self.init_contact_creation(wd)
         self.create_contact(wd, Contact(first_name="test", middle_name="test", last_name="test", nickname="test",
-                                        title="test", company="test", address="test", home="test", mobile_phone="test",
-                                        work="test", fax="test", email1="test", email2="test", email3="test",
+                                        title="test", company="test", address="test", home_phone="test", mobile_phone="test",
+                                        work_phone="test", fax="test", email1="test", email2="test", email3="test",
                                         homepage="test", birthday_day="1", birthday_month="January",
                                         birthday_year="1900", anniversary_day="1", anniversary_month="February",
                                         anniversary_year="2000", address2="test", home2="test", notes="test"))
@@ -89,20 +89,20 @@ class TestAddContact(unittest.TestCase):
         wd.find_element(By.NAME, "address").clear()
         wd.find_element(By.NAME, "address").send_keys(contact.address)
 
-        # Fill home pole
+        # Fill home phone pole
         wd.find_element(By.NAME, "home").click()
         wd.find_element(By.NAME, "home").clear()
-        wd.find_element(By.NAME, "home").send_keys(contact.home)
+        wd.find_element(By.NAME, "home").send_keys(contact.home_phone)
 
         # Fill mobile phone pole
         wd.find_element(By.NAME, "mobile").click()
         wd.find_element(By.NAME, "mobile").clear()
         wd.find_element(By.NAME, "mobile").send_keys(contact.mobile_phone)
 
-        # Fill work pole
+        # Fill work phone pole
         wd.find_element(By.NAME, "work").click()
         wd.find_element(By.NAME, "work").clear()
-        wd.find_element(By.NAME, "work").send_keys(contact.work)
+        wd.find_element(By.NAME, "work").send_keys(contact.work_phone)
 
         # Fill fax pole
         wd.find_element(By.NAME, "fax").click()
