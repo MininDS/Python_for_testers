@@ -1,29 +1,20 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from fixtures.session import SessionHelper
 
 class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+        self.session = SessionHelper(self)
 
     def open_main_page(self):
         # Open main page
         wd = self.wd
         wd.get("http://localhost:8080/addressbook/group.php")
 
-    def login(self, username, password):
-        # Login
-        wd = self.wd
-        self.open_main_page()
 
-        wd.find_element(By.NAME, "user").click()
-        wd.find_element(By.NAME, "user").clear()
-        wd.find_element(By.NAME, "user").send_keys(username)
-        wd.find_element(By.NAME, "pass").click()
-        wd.find_element(By.NAME, "pass").clear()
-        wd.find_element(By.NAME, "pass").send_keys(password)
-        wd.find_element(By.XPATH, "//input[@value='Login']").click()
 
     def init_group_creation(self):
         # Open groups page and init new group creation
@@ -163,10 +154,7 @@ class Application:
         wd = self.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/form/input[21]').click()
 
-    def logout(self):
-        # Logout
-        wd = self.wd
-        wd.find_element(By.XPATH, "//*[@id='top']/form/a").click()
+
 
     def destroy(self):
         self.wd.quit()
