@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 
 class GroupHelper:
+    # Class-helper for groups - contains methods for group creation only
     def __init__(self, app):
         self.app = app
-
 
     def init_group_creation(self):
         # Open groups page and init new group creation

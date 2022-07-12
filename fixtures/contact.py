@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 class ContactHelper:
+    # Class-helper for contacts - contains methods for contact creation only
     def __init__(self, app):
         self.app = app
 

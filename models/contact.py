@@ -1,4 +1,5 @@
 class Contact:
+    # Class describes all contacts properties
     def __init__(self, first_name, middle_name, last_name, nickname, title, company, address, home_phone, mobile_phone, work_phone,
                  fax, email1, email2, email3, homepage, birthday_day, birthday_month, birthday_year, anniversary_day,
                  anniversary_month, anniversary_year, address2, home2, notes):

@@ -4,6 +4,7 @@ from fixtures.group import GroupHelper
 from fixtures.contact import ContactHelper
 
 class Application:
+    # Main fixture - contains links on Helper-classes for tests
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)

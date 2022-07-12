@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 class SessionHelper:
-
+    # Class-helper for session-management - login, logout to system, etc
     def __init__(self, app):
         self.app = app
 

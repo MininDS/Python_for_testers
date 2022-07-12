@@ -12,7 +12,7 @@ def app(request):
 
 
 def test_add_contact(app):
-    # Main test scenario - open site, login, create contact, return to main page and logout
+    # Main test scenario - open site, login, create contact, return to main page and logout using classes-helpers
     app.session.login(username="admin", password="secret")
     app.contact.create(Contact(first_name="test", middle_name="test", last_name="test", nickname="test",
                                title="test", company="test", address="test", home_phone="test", mobile_phone="test",
