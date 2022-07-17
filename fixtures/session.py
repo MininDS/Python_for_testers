@@ -22,3 +22,4 @@ class SessionHelper:
         # Logout
         wd = self.app.wd
         wd.find_element(By.XPATH, "//*[@id='top']/form/a").click()
+        wd.find_element(By.NAME, "user")
