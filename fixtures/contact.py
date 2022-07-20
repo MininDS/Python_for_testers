@@ -145,3 +145,18 @@ class ContactHelper:
         self.submit_contact_deletion_via_contacts_list()
         # Return to home page of application again
         self.return_to_home_page()
+
+    def init_contact_edit(self):
+        # Init contact deletion - click on delete button
+        wd = self.app.wd
+        wd.find_element(By.XPATH, '//*[@id="maintable"]/tbody/tr[2]/td[8]/a/img').click()
+
+    def delete_via_contacts_form(self):
+        # Delete contact via edit-form
+        wd = self.app.wd
+        # Open first contacts edit form
+        self.init_contact_edit()
+        # Click on delete button on edit form
+        wd.find_element(By.XPATH, '//*[@id="content"]/form[2]/input[2]')
+        # Return to home page with contacts list again
+        self.return_to_home_page()
