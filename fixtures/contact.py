@@ -11,6 +11,11 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/div/i/a[2]').click()
 
+    def return_to_home_page(self):
+        # Return to home page of application
+        wd = self.app.wd
+        wd.find_element(By.XPATH, '//*[@id="nav"]/ul/li[1]/a').click()
+
     def init_contact_creation(self):
         # Init contact creation
         wd = self.app.wd
@@ -109,10 +114,34 @@ class ContactHelper:
         wd.find_element(By.NAME, "notes").click()
         wd.find_element(By.NAME, "notes").clear()
         wd.find_element(By.NAME, "notes").send_keys(contact.notes)
+        # Submit contact creation
         self.submit_contact_creation()
+        # Return to main page again
         self.return_to_main_page()
 
     def submit_contact_creation(self):
         # Submit contact creation
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/form/input[21]').click()
+
+    def submit_contact_deletion_via_contacts_list(self):
+        # Submit contact deletion in modal browser-form
+        wd = self.app.wd
+        wd.switch_to.alert.accept()
+
+    def init_delete_via_contacts_list(self):
+        # Init contact deletion - click on delete button
+        wd = self.app.wd
+        wd.find_element(By.XPATH, '//*[@id="content"]/form[2]/div[2]/input').click()
+
+    def delete_via_contacts_list(self):
+        # Select first contact in the general list and delete it
+        wd = self.app.wd
+        # Select first contact in contacts list
+        wd.find_element(By.NAME, "selected[]").click()
+        # Click on delete button on home page
+        self.init_delete_via_contacts_list()
+        # Submit selected contact deletion via modal form in browser
+        self.submit_contact_deletion_via_contacts_list()
+        # Return to home page of application again
+        self.return_to_home_page()
