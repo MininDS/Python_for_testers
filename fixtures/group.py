@@ -19,7 +19,6 @@ class GroupHelper:
         # Fill group form
         wd = self.app.wd
         self.open_groups_page()
-        #wd.get("http://localhost:8080/addressbook/group.php")
         # Begin creation process - open group page for poles filling
         self.init_group_creation()
         # Fill poles of group name, header and footer
