@@ -124,6 +124,11 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/form/input[21]').click()
 
+    def submit_contact_update(self):
+        # Submit contact update
+        wd = self.app.wd
+        wd.find_element(By.NAME, "update").click()
+
     def submit_contact_deletion_via_contacts_list(self):
         # Submit contact deletion in modal browser-form
         wd = self.app.wd
@@ -146,17 +151,219 @@ class ContactHelper:
         # Return to home page of application again
         self.return_to_home_page()
 
-    def init_contact_edit(self):
-        # Init contact deletion - click on delete button
+    def init_contact_edit_from_list(self):
+        # Init contact edit_via_contacts_list - click on edit_via_contacts_list button on general contacts list
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="maintable"]/tbody/tr[2]/td[8]/a/img').click()
 
-    def delete_via_contacts_form(self):
-        # Delete contact via edit-form
+    def init_contact_edit_from_details(self):
+        # Init contact edit_via_contacts_list - click on details button and modify button in that menu
         wd = self.app.wd
-        # Open first contacts edit form
-        self.init_contact_edit()
-        # Click on delete button on edit form
+        wd.find_element(By.XPATH, '//*[@id="maintable"]/tbody/tr[2]/td[7]/a/img').click()
+        wd.find_element(By.NAME, "modifiy").click()
+
+    def delete_via_contacts_form(self):
+        # Delete contact via edit_via_contacts_list-form
+        wd = self.app.wd
+        # Open first contacts edit_via_contacts_list form
+        self.init_contact_edit_from_list()
+        # Click on delete button on edit_via_contacts_list form
         wd.find_element(By.XPATH, '//*[@id="content"]/form[2]/input[2]')
         # Return to home page with contacts list again
+        self.return_to_home_page()
+
+    def edit_via_contacts_list(self, contact):
+        # Edit contact form entirely via contacts list
+        wd = self.app.wd
+        # Begin contact edit_via_contacts_list process from main page
+        self.init_contact_edit_from_list()
+        # Edit firstname pole
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys(contact.first_name)
+        # Edit middlename pole
+        wd.find_element(By.NAME, "middlename").click()
+        wd.find_element(By.NAME, "middlename").clear()
+        wd.find_element(By.NAME, "middlename").send_keys(contact.middle_name)
+        # Edit lastname pole
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys(contact.last_name)
+        # Edit nickname pole
+        wd.find_element(By.NAME, "nickname").click()
+        wd.find_element(By.NAME, "nickname").clear()
+        wd.find_element(By.NAME, "nickname").send_keys(contact.nickname)
+        # Edit title pole
+        wd.find_element(By.NAME, "title").click()
+        wd.find_element(By.NAME, "title").clear()
+        wd.find_element(By.NAME, "title").send_keys(contact.title)
+        # Edit company pole
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys(contact.company)
+        # Edit address pole
+        wd.find_element(By.NAME, "address").click()
+        wd.find_element(By.NAME, "address").clear()
+        wd.find_element(By.NAME, "address").send_keys(contact.address)
+        # Edit home phone pole
+        wd.find_element(By.NAME, "home").click()
+        wd.find_element(By.NAME, "home").clear()
+        wd.find_element(By.NAME, "home").send_keys(contact.home_phone)
+        # Edit mobile phone pole
+        wd.find_element(By.NAME, "mobile").click()
+        wd.find_element(By.NAME, "mobile").clear()
+        wd.find_element(By.NAME, "mobile").send_keys(contact.mobile_phone)
+        # Edit work phone pole
+        wd.find_element(By.NAME, "work").click()
+        wd.find_element(By.NAME, "work").clear()
+        wd.find_element(By.NAME, "work").send_keys(contact.work_phone)
+        # Edit fax pole
+        wd.find_element(By.NAME, "fax").click()
+        wd.find_element(By.NAME, "fax").clear()
+        wd.find_element(By.NAME, "fax").send_keys(contact.fax)
+        # Edit email1 pole
+        wd.find_element(By.NAME, "email").click()
+        wd.find_element(By.NAME, "email").clear()
+        wd.find_element(By.NAME, "email").send_keys(contact.email1)
+        # Edit email2 pole
+        wd.find_element(By.NAME, "email2").click()
+        wd.find_element(By.NAME, "email2").clear()
+        wd.find_element(By.NAME, "email2").send_keys(contact.email2)
+        # Edit email3 pole
+        wd.find_element(By.NAME, "email3").click()
+        wd.find_element(By.NAME, "email3").clear()
+        wd.find_element(By.NAME, "email3").send_keys(contact.email3)
+        # Edit homepage pole
+        wd.find_element(By.NAME, "homepage").click()
+        wd.find_element(By.NAME, "homepage").clear()
+        wd.find_element(By.NAME, "homepage").send_keys(contact.homepage)
+        # Edit birthday date values
+        wd.find_element(By.NAME, "bday").click()
+        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text(contact.birthday_day)
+        wd.find_element(By.NAME, "bmonth").click()
+        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text(contact.birthday_month)
+        wd.find_element(By.NAME, "byear").click()
+        wd.find_element(By.NAME, "byear").clear()
+        wd.find_element(By.NAME, "byear").send_keys(contact.birthday_year)
+        # Edit anniversary date values
+        wd.find_element(By.NAME, "aday").click()
+        Select(wd.find_element(By.NAME, "aday")).select_by_visible_text(contact.anniversary_day)
+        wd.find_element(By.NAME, "amonth").click()
+        Select(wd.find_element(By.NAME, "amonth")).select_by_visible_text(contact.anniversary_month)
+        wd.find_element(By.NAME, "ayear").click()
+        wd.find_element(By.NAME, "ayear").clear()
+        wd.find_element(By.NAME, "ayear").send_keys(contact.anniversary_year)
+        # Edit address2 form
+        wd.find_element(By.NAME, "address2").click()
+        wd.find_element(By.NAME, "address2").clear()
+        wd.find_element(By.NAME, "address2").send_keys(contact.address2)
+        # Edit home2 pole
+        wd.find_element(By.NAME, "phone2").click()
+        wd.find_element(By.NAME, "phone2").clear()
+        wd.find_element(By.NAME, "phone2").send_keys(contact.home2)
+        # Edit notes form
+        wd.find_element(By.NAME, "notes").click()
+        wd.find_element(By.NAME, "notes").clear()
+        wd.find_element(By.NAME, "notes").send_keys(contact.notes)
+        # Submit contact update
+        self.submit_contact_update()
+        # Return to main page again
+        self.return_to_home_page()
+
+    def edit_via_contacts_details(self, contact):
+        # Edit contact form entirely via details form
+        wd = self.app.wd
+        # Begin contact edit_via_contacts_list process from details page
+        self.init_contact_edit_from_details()
+        # Edit firstname pole
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys(contact.first_name)
+        # Edit middlename pole
+        wd.find_element(By.NAME, "middlename").click()
+        wd.find_element(By.NAME, "middlename").clear()
+        wd.find_element(By.NAME, "middlename").send_keys(contact.middle_name)
+        # Edit lastname pole
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys(contact.last_name)
+        # Edit nickname pole
+        wd.find_element(By.NAME, "nickname").click()
+        wd.find_element(By.NAME, "nickname").clear()
+        wd.find_element(By.NAME, "nickname").send_keys(contact.nickname)
+        # Edit title pole
+        wd.find_element(By.NAME, "title").click()
+        wd.find_element(By.NAME, "title").clear()
+        wd.find_element(By.NAME, "title").send_keys(contact.title)
+        # Edit company pole
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys(contact.company)
+        # Edit address pole
+        wd.find_element(By.NAME, "address").click()
+        wd.find_element(By.NAME, "address").clear()
+        wd.find_element(By.NAME, "address").send_keys(contact.address)
+        # Edit home phone pole
+        wd.find_element(By.NAME, "home").click()
+        wd.find_element(By.NAME, "home").clear()
+        wd.find_element(By.NAME, "home").send_keys(contact.home_phone)
+        # Edit mobile phone pole
+        wd.find_element(By.NAME, "mobile").click()
+        wd.find_element(By.NAME, "mobile").clear()
+        wd.find_element(By.NAME, "mobile").send_keys(contact.mobile_phone)
+        # Edit work phone pole
+        wd.find_element(By.NAME, "work").click()
+        wd.find_element(By.NAME, "work").clear()
+        wd.find_element(By.NAME, "work").send_keys(contact.work_phone)
+        # Edit fax pole
+        wd.find_element(By.NAME, "fax").click()
+        wd.find_element(By.NAME, "fax").clear()
+        wd.find_element(By.NAME, "fax").send_keys(contact.fax)
+        # Edit email1 pole
+        wd.find_element(By.NAME, "email").click()
+        wd.find_element(By.NAME, "email").clear()
+        wd.find_element(By.NAME, "email").send_keys(contact.email1)
+        # Edit email2 pole
+        wd.find_element(By.NAME, "email2").click()
+        wd.find_element(By.NAME, "email2").clear()
+        wd.find_element(By.NAME, "email2").send_keys(contact.email2)
+        # Edit email3 pole
+        wd.find_element(By.NAME, "email3").click()
+        wd.find_element(By.NAME, "email3").clear()
+        wd.find_element(By.NAME, "email3").send_keys(contact.email3)
+        # Edit homepage pole
+        wd.find_element(By.NAME, "homepage").click()
+        wd.find_element(By.NAME, "homepage").clear()
+        wd.find_element(By.NAME, "homepage").send_keys(contact.homepage)
+        # Edit birthday date values
+        wd.find_element(By.NAME, "bday").click()
+        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text(contact.birthday_day)
+        wd.find_element(By.NAME, "bmonth").click()
+        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text(contact.birthday_month)
+        wd.find_element(By.NAME, "byear").click()
+        wd.find_element(By.NAME, "byear").clear()
+        wd.find_element(By.NAME, "byear").send_keys(contact.birthday_year)
+        # Edit anniversary date values
+        wd.find_element(By.NAME, "aday").click()
+        Select(wd.find_element(By.NAME, "aday")).select_by_visible_text(contact.anniversary_day)
+        wd.find_element(By.NAME, "amonth").click()
+        Select(wd.find_element(By.NAME, "amonth")).select_by_visible_text(contact.anniversary_month)
+        wd.find_element(By.NAME, "ayear").click()
+        wd.find_element(By.NAME, "ayear").clear()
+        wd.find_element(By.NAME, "ayear").send_keys(contact.anniversary_year)
+        # Edit address2 form
+        wd.find_element(By.NAME, "address2").click()
+        wd.find_element(By.NAME, "address2").clear()
+        wd.find_element(By.NAME, "address2").send_keys(contact.address2)
+        # Edit home2 pole
+        wd.find_element(By.NAME, "phone2").click()
+        wd.find_element(By.NAME, "phone2").clear()
+        wd.find_element(By.NAME, "phone2").send_keys(contact.home2)
+        # Edit notes form
+        wd.find_element(By.NAME, "notes").click()
+        wd.find_element(By.NAME, "notes").clear()
+        wd.find_element(By.NAME, "notes").send_keys(contact.notes)
+        # Submit contact update
+        self.submit_contact_update()
+        # Return to main page again
         self.return_to_home_page()

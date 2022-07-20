@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from models.contact import Contact
 
 
 def test_delete_first_contact_from_list(app):
@@ -10,7 +9,7 @@ def test_delete_first_contact_from_list(app):
 
 
 def test_delete_first_contact_from_form(app):
-    # Main test scenario - open site, login, delete first contact from its edit form, return to main page and logout using classes-helpers
+    # Alternate test scenario - open site, login, delete first contact from its edit_via_contacts_list form, return to main page and logout using classes-helpers
     app.session.login(username="admin", password="secret")
     app.contact.delete_via_contacts_form()
     app.session.logout()

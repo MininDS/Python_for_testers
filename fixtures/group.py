@@ -39,7 +39,7 @@ class GroupHelper:
     def init_group_edit(self):
         # Init new group modification on groups page
         wd = self.app.wd
-        wd.find_element(By.NAME, "edit").click()
+        wd.find_element(By.NAME, "edit_via_contacts_list").click()
 
     def edit(self, group):
         wd = self.app.wd
