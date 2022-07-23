@@ -6,13 +6,13 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def return_to_main_page(self):
+    def go_to_main_page(self):
         # Return to main page
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/div/i/a[2]').click()
 
-    def return_to_home_page(self):
-        # Return to home page of application
+    def go_to_home_page(self):
+        # Go to home page of application
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="nav"]/ul/li[1]/a').click()
 
@@ -24,6 +24,7 @@ class ContactHelper:
     def create(self, contact):
         # Fill contact form entirely
         wd = self.app.wd
+        self.go_to_home_page()
         self.init_contact_creation()
 
         # Fill firstname pole
@@ -117,7 +118,7 @@ class ContactHelper:
         # Submit contact creation
         self.submit_contact_creation()
         # Return to main page again
-        self.return_to_main_page()
+        self.go_to_main_page()
 
     def submit_contact_creation(self):
         # Submit contact creation
@@ -134,49 +135,52 @@ class ContactHelper:
         wd = self.app.wd
         wd.switch_to.alert.accept()
 
-    def init_delete_via_contacts_list(self):
+    def init_first_contact_delete_via_contacts_list(self):
         # Init contact deletion - click on delete button
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="content"]/form[2]/div[2]/input').click()
 
-    def delete_via_contacts_list(self):
+    def delete_first_contact_via_contacts_list(self):
         # Select first contact in the general list and delete it
         wd = self.app.wd
+        self.go_to_home_page()
         # Select first contact in contacts list
         wd.find_element(By.NAME, "selected[]").click()
         # Click on delete button on home page
-        self.init_delete_via_contacts_list()
+        self.init_first_contact_delete_via_contacts_list()
         # Submit selected contact deletion via modal form in browser
         self.submit_contact_deletion_via_contacts_list()
         # Return to home page of application again
-        self.return_to_home_page()
+        self.go_to_home_page()
 
-    def init_contact_edit_from_list(self):
-        # Init contact edit_via_contacts_list - click on edit_via_contacts_list button on general contacts list
+    def init_first_contact_edit_from_list(self):
+        # Init contact edit_first_contact_via_contacts_list - click on edit_first_contact_via_contacts_list button on general contacts list
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="maintable"]/tbody/tr[2]/td[8]/a/img').click()
 
-    def init_contact_edit_from_details(self):
-        # Init contact edit_via_contacts_list - click on details button and modify button in that menu
+    def init_first_contact_edit_from_details(self):
+        # Init contact edit_first_contact_via_contacts_list - click on details button and modify button in that menu
         wd = self.app.wd
         wd.find_element(By.XPATH, '//*[@id="maintable"]/tbody/tr[2]/td[7]/a/img').click()
         wd.find_element(By.NAME, "modifiy").click()
 
-    def delete_via_contacts_form(self):
-        # Delete contact via edit_via_contacts_list-form
+    def delete_first_contact_via_contacts_form(self):
+        # Delete contact via edit_first_contact_via_contacts_list-form
         wd = self.app.wd
-        # Open first contacts edit_via_contacts_list form
-        self.init_contact_edit_from_list()
-        # Click on delete button on edit_via_contacts_list form
+        self.go_to_home_page()
+        # Open first contacts edit_first_contact_via_contacts_list form
+        self.init_first_contact_edit_from_list()
+        # Click on delete button on edit_first_contact_via_contacts_list form
         wd.find_element(By.XPATH, '//*[@id="content"]/form[2]/input[2]')
         # Return to home page with contacts list again
-        self.return_to_home_page()
+        self.go_to_home_page()
 
-    def edit_via_contacts_list(self, contact):
+    def edit_first_contact_via_contacts_list(self, contact):
         # Edit contact form entirely via contacts list
         wd = self.app.wd
-        # Begin contact edit_via_contacts_list process from main page
-        self.init_contact_edit_from_list()
+        self.go_to_home_page()
+        # Begin contact edit_first_contact_via_contacts_list process from main page
+        self.init_first_contact_edit_from_list()
         # Edit firstname pole
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
@@ -268,13 +272,14 @@ class ContactHelper:
         # Submit contact update
         self.submit_contact_update()
         # Return to main page again
-        self.return_to_home_page()
+        self.go_to_home_page()
 
-    def edit_via_contacts_details(self, contact):
+    def edit_first_contact_via_contacts_details(self, contact):
         # Edit contact form entirely via details form
         wd = self.app.wd
-        # Begin contact edit_via_contacts_list process from details page
-        self.init_contact_edit_from_details()
+        self.go_to_home_page()
+        # Begin contact edit_first_contact_via_contacts_list process from details page
+        self.init_first_contact_edit_from_details()
         # Edit firstname pole
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
@@ -366,4 +371,4 @@ class ContactHelper:
         # Submit contact update
         self.submit_contact_update()
         # Return to main page again
-        self.return_to_home_page()
+        self.go_to_home_page()
