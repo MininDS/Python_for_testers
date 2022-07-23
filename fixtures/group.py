@@ -16,6 +16,7 @@ class GroupHelper:
         wd.find_element(By.NAME, "new").click()
 
     def fill_group_form_full(self, group):
+        # Fill all poles in group form
         wd = self.app.wd
         wd.find_element(By.NAME, "group_name").click()
         wd.find_element(By.NAME, "group_name").clear()
